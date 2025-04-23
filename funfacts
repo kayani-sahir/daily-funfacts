@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(PosiVibeApp());
+}
+
+class PosiVibeApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My Name is Sahir',
+      home: PosiVibeHome(),
+    );
+  }
+}
+
+class PosiVibeHome extends StatefulWidget {
+  @override
+  _PosiVibeHomeState createState() => _PosiVibeHomeState();
+}
+
+class _PosiVibeHomeState extends State<PosiVibeHome> {
+  int _counter = 0;
+  String _fact = '';
+  List<String> _facts = [
+    "🐙 An octopus has three hearts – Two pump blood to the gills, and one to the rest of the body!",
+    "🚀 A day on Venus is longer than a year – It takes Venus longer to rotate once than to orbit the Sun.",
+    "🦶 You can't hum while holding your nose – Try it! It's almost impossible.",
+    "🔥 Bananas are slightly radioactive – They contain potassium-40, a naturally occurring isotope.",
+    "🐶 Dogs can smell your feelings – They can detect chemical changes related to emotions like fear or happiness.",
+  ];
+
+  void _showFact() {
+    setState(() {
+      _fact = _facts[_counter % _facts.length];
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Fun Facts "),
+        backgroundColor: Colors.teal,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(
+                    'https://tse3.mm.bing.net/th?id=OIP.zykpWp2hdCXP4TskyX9vlQHaEW&pid=Api&P=0&h=220'),
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Hi, I am Sahir!",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Text(
+                _fact,
+                style: TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _showFact,
+                child: Text("show fun facts around the world "),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
